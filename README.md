@@ -120,32 +120,51 @@ Recommended validation checks:
 
 ```text
 .
-├── data/
-│   ├── raw/
-│   ├── processed/
-│   └── reference/
-├── notebooks/
-│   ├── 01_data_profiling.ipynb
-│   ├── 02_feature_engineering.ipynb
-│   └── 03_fraud_scoring.ipynb
-├── sql/
-│   ├── schema.sql
-│   ├── data_quality_checks.sql
-│   └── transaction_monitoring_queries.sql
-├── powerbi/
-│   └── fraud_monitoring_dashboard.pbix
-├── reports/
-│   └── case_review_summary.xlsx
-├── src/
-│   ├── data_cleaning.py
-│   ├── feature_engineering.py
-│   └── fraud_scoring.py
-└── README.md
+|-- data/
+|   |-- raw/
+|   |-- processed/
+|   `-- reference/
+|-- notebooks/
+|   |-- 01_data_profiling.ipynb
+|   |-- 02_feature_engineering.ipynb
+|   `-- 03_fraud_scoring.ipynb
+|-- sql/
+|   |-- 01_schema.sql
+|   |-- 02_seed_data.sql
+|   |-- 03_dashboard_views.sql
+|   |-- 04_transaction_monitoring_queries.sql
+|   |-- 05_data_quality_checks.sql
+|   `-- run_all.sql
+|-- powerbi/
+|   `-- fraud_monitoring_dashboard.pbix
+|-- reports/
+|   `-- case_review_summary.xlsx
+|-- src/
+|   |-- data_cleaning.py
+|   |-- feature_engineering.py
+|   `-- fraud_scoring.py
+`-- README.md
 ```
 
 ## Setup Notes
 
-This repository is currently a project scaffold. A typical implementation would follow these steps:
+This repository includes PostgreSQL scripts under `sql/` for the database schema, synthetic sample data, dashboard views, data quality checks, and analyst queries.
+
+To load the SQL project into PostgreSQL:
+
+```bash
+createdb banking_fraud_monitoring
+psql -d banking_fraud_monitoring -f sql/run_all.sql
+```
+
+Then run the analytical query and data quality scripts:
+
+```bash
+psql -d banking_fraud_monitoring -f sql/04_transaction_monitoring_queries.sql
+psql -d banking_fraud_monitoring -f sql/05_data_quality_checks.sql
+```
+
+A typical implementation would follow these steps:
 
 1. Create the PostgreSQL database and tables.
 2. Load raw or synthetic banking transaction data.
@@ -162,4 +181,4 @@ Built an end-to-end fraud analytics project using SQL, Python, PostgreSQL, Power
 
 ## Project Status
 
-Initial README and project plan created. Implementation files, datasets, SQL scripts, Python notebooks, and dashboard assets should be added as the project is built.
+Initial README and SQL layer created. The project now includes a PostgreSQL schema, synthetic banking transaction data, dashboard-ready views, transaction monitoring queries, and data quality checks. Python notebooks, Excel outputs, and Power BI dashboard assets can be added next.
