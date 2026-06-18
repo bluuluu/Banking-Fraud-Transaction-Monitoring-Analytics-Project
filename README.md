@@ -139,6 +139,7 @@ Recommended validation checks:
 |   `-- fraud_monitoring_dashboard.pbix
 |-- reports/
 |   `-- case_review_summary.xlsx
+|-- requirements.txt
 |-- src/
 |   |-- data_cleaning.py
 |   |-- feature_engineering.py
@@ -164,6 +165,27 @@ psql -d banking_fraud_monitoring -f sql/04_transaction_monitoring_queries.sql
 psql -d banking_fraud_monitoring -f sql/05_data_quality_checks.sql
 ```
 
+Install the Python dependencies:
+
+```bash
+python3 -m pip install -r requirements.txt
+```
+
+Run the Python pipeline:
+
+```bash
+python3 src/data_cleaning.py
+python3 src/feature_engineering.py
+python3 src/fraud_scoring.py
+```
+
+The Python scripts generate:
+
+- `data/processed/clean_transactions.csv`
+- `data/processed/transaction_features.csv`
+- `data/processed/fraud_scores.csv`
+- `data/processed/high_risk_transactions.csv`
+
 A typical implementation would follow these steps:
 
 1. Create the PostgreSQL database and tables.
@@ -181,4 +203,4 @@ Built an end-to-end fraud analytics project using SQL, Python, PostgreSQL, Power
 
 ## Project Status
 
-Initial README and SQL layer created. The project now includes a PostgreSQL schema, synthetic banking transaction data, dashboard-ready views, transaction monitoring queries, and data quality checks. Python notebooks, Excel outputs, and Power BI dashboard assets can be added next.
+Initial README, SQL layer, and Python analytics layer created. The project now includes a PostgreSQL schema, synthetic banking transaction data, dashboard-ready views, transaction monitoring queries, data quality checks, data cleaning, feature engineering, rule-based fraud scoring, optional Isolation Forest anomaly detection, and processed CSV outputs. Python notebooks, Excel outputs, and Power BI dashboard assets can be added next.
