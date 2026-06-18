@@ -128,6 +128,10 @@ Recommended validation checks:
 |   |-- 01_data_profiling.ipynb
 |   |-- 02_feature_engineering.ipynb
 |   `-- 03_fraud_scoring.ipynb
+|-- reports/
+|   |-- business_insights.md
+|   |-- case_review_summary.xlsx
+|   `-- screenshots/
 |-- sql/
 |   |-- 01_schema.sql
 |   |-- 02_seed_data.sql
@@ -136,14 +140,16 @@ Recommended validation checks:
 |   |-- 05_data_quality_checks.sql
 |   `-- run_all.sql
 |-- powerbi/
-|   `-- fraud_monitoring_dashboard.pbix
-|-- reports/
-|   `-- case_review_summary.xlsx
+|   |-- README.md
+|   `-- dax_measures.md
+|-- scripts/
+|   `-- run_pipeline.sh
 |-- requirements.txt
 |-- src/
 |   |-- data_cleaning.py
 |   |-- feature_engineering.py
-|   `-- fraud_scoring.py
+|   |-- fraud_scoring.py
+|   `-- generate_portfolio_assets.py
 `-- README.md
 ```
 
@@ -177,6 +183,7 @@ Run the Python pipeline:
 python3 src/data_cleaning.py
 python3 src/feature_engineering.py
 python3 src/fraud_scoring.py
+python3 src/generate_portfolio_assets.py
 ```
 
 The Python scripts generate:
@@ -185,6 +192,16 @@ The Python scripts generate:
 - `data/processed/transaction_features.csv`
 - `data/processed/fraud_scores.csv`
 - `data/processed/high_risk_transactions.csv`
+- `reports/case_review_summary.xlsx`
+- `reports/business_insights.md`
+- `reports/screenshots/*.png`
+- `notebooks/*.ipynb`
+
+You can also run the Python portfolio pipeline with:
+
+```bash
+scripts/run_pipeline.sh
+```
 
 A typical implementation would follow these steps:
 
@@ -203,4 +220,4 @@ Built an end-to-end fraud analytics project using SQL, Python, PostgreSQL, Power
 
 ## Project Status
 
-Initial README, SQL layer, and Python analytics layer created. The project now includes a PostgreSQL schema, synthetic banking transaction data, dashboard-ready views, transaction monitoring queries, data quality checks, data cleaning, feature engineering, rule-based fraud scoring, optional Isolation Forest anomaly detection, and processed CSV outputs. Python notebooks, Excel outputs, and Power BI dashboard assets can be added next.
+Initial README, SQL layer, Python analytics layer, notebooks, Excel report, insight writeup, chart images, and Power BI build documentation created. Power BI Desktop is still required to create the final `.pbix` file from the generated CSV outputs and dashboard guide.
